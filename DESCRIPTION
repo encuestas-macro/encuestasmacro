@@ -1,12 +1,12 @@
 Package: encuestasmacro
 Type: Package
-Title: Procesamiento de las encuestas del departamento PROMIECO
+Title: Tools for technical processing of the Macroeconomic Surveys of the Central Bank
+    of the Dominican Republic
 Version: 0.1.0
 Authors@R: person("Johan", "Rosa", email = "johan.rosaperez@gmail.com",
   role = c("aut", "cre"))
-Description: Contiene una serie de funciones para procesar, analizar y generar los 
-    principales resultados de las encuestas macroeconómica del departamento de 
-    porgramación monetaria del banco central de la republica dominicana.
+Description: Contains a set of functions to process and analyze the main results of
+    the macroeconomic surveys in the central bank
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

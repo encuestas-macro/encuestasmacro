@@ -1,6 +1,6 @@
 #' Create date labels out of dates
 #'
-#' Take a date object into a 'Month yyyymm' format
+#' Take a date object into a 'Month year' format
 #'
 #' @param date a date vector
 #' @param year_in_new_line should the year be in it own line?
