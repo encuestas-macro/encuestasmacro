@@ -3,7 +3,7 @@ Title: Tools for technical processing of the Macroeconomic Surveys of the Centra
 Version: 0.0.0.9000
 Authors@R: person("Johan", "Rosa", email = "johan.rosaperez@gmail.com", role = c("aut", "cre"))
 Description: Contains a set of functions to process and analyze the main results of the macroeconomic surveys in the central bank.
-    Use this package to acces economic data of the Dominican Republic.
+    Use this package to access economic data of the Dominican Republic.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
