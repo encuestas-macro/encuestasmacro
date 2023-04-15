@@ -15,5 +15,5 @@ date_label(date = Sys.Date(), year_in_new_line = FALSE)
 a character string
 }
 \description{
-Take a date object into a 'Month yyyymm' format
+Take a date object into a 'Month year' format
 }
