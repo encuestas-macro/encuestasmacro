@@ -1,24 +1,19 @@
 Package: encuestasmacro
-Type: Package
-Title: Tools for technical processing of the Macroeconomic Surveys of the Central Bank
-    of the Dominican Republic
-Version: 0.1.0
-Authors@R: person("Johan", "Rosa", email = "johan.rosaperez@gmail.com",
-  role = c("aut", "cre"))
-Description: Contains a set of functions to process and analyze the main results of
-    the macroeconomic surveys in the central bank
+Title: Tools for technical processing of the Macroeconomic Surveys of the Central Bank of the Dominican Republic
+Version: 0.0.0.9000
+Authors@R: person("Johan", "Rosa", email = "johan.rosaperez@gmail.com", role = c("aut", "cre"))
+Description: Contains a set of functions to process and analyze the main results of the macroeconomic surveys in the central bank.
+    Use this package to acces economic data of the Dominican Republic.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.2.3
-Suggests: 
-    testthat (>= 3.0.0),
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests:
     covr,
     lintr,
     rcmdcheck,
     spelling,
     testthat
-Config/testthat/edition: 3
 Imports: 
     stringr,
     lubridate,
