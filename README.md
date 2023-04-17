@@ -1,7 +1,7 @@
 # encuestasmacro
 
 <!-- badges: start -->
-[![CI](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/main.yml/badge.svg)](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/main.yml)
+[![CI](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Tools for technical processing of the Macroeconomic Surveys of the Central Bank of the Dominican Republic.
