@@ -13,5 +13,5 @@ Contains a set of functions to process and analyze the main results of the macro
 You can install the development version of encuestasmacro like so:
 
 ``` r
-remotes::install_github("johan-rosa/databcrd")
+remotes::install_github("encuestas-macro/encuestasmacro")
 ```
