@@ -7,7 +7,7 @@ Description: Contains a set of functions to process and analyze the main results
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests:
     covr,
     lintr,
@@ -17,5 +17,6 @@ Suggests:
 Imports: 
     stringr,
     lubridate,
-    checkmate
+    checkmate,
+    dplyr
 Config/testthat/edition: 3
