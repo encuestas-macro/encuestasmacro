@@ -19,5 +19,9 @@ Imports:
     lubridate,
     checkmate,
     dplyr,
-    ggplot2
+    ggplot2,
+    readxl,
+    janitor,
+    tidyr,
+    purrr
 Config/testthat/edition: 3
