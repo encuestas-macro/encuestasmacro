@@ -172,6 +172,44 @@ crear_mes <- function(mes, type = "text_to_number") {
   new_mes
 }
 
+#' Crear el directorio para alojar los resultados del procesamiento de la encuesta
+#'
+#' @param encuesta encuesta a procesar "eem" o "eoe"
+#' @param year year value
+#' @param mes string con el mes
+#' @param path string con la ruta
+#'
+#' @export
+create_month_dirs <- function(encuesta, year, mes, path = ".") {
+  mes <- stringr::str_to_lower(mes)
+
+  checkmate::assert_character(mes)
+  checkmate::assert_choice(
+    mes,
+    c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+      "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+  )
+
+  mes_in_number <- stringr::str_pad(crear_mes(mes), width = 2, pad = "0")
+  folder <- paste0(mes_in_number, ". ", mes)
+
+  dir.create(
+    file.path(path, encuesta, "outputs", year, folder),
+    recursive = TRUE
+  )
+  dir.create(
+    file.path(path, encuesta, "outputs", year, folder, "graficos"),
+    recursive = TRUE
+  )
+  dir.create(
+    file.path(path, encuesta, "outputs", year, folder, "pagina_web"),
+    recursive = TRUE
+  )
+  dir.create(
+    file.path(path, encuesta, "outputs", year, folder, "informe"),
+    recursive = TRUE)
+}
+
 #' Guardar gráficos de ggplot2
 #'
 #' Recibe gráficos y los guarda en PNG usando como bombre el nombre del objeto
