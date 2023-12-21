@@ -18,5 +18,6 @@ Imports:
     stringr,
     lubridate,
     checkmate,
-    dplyr
+    dplyr,
+    ggplot2
 Config/testthat/edition: 3
