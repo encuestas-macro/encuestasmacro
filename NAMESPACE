@@ -3,3 +3,4 @@
 export(crear_mes)
 export(date_label)
 export(my_date_breaks)
+export(saving_plot)

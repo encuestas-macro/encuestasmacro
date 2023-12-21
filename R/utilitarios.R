@@ -171,3 +171,26 @@ crear_mes <- function(mes, type = "text_to_number") {
 
   new_mes
 }
+
+#' Guardar gráficos de ggplot2
+#'
+#' Recibe gráficos y los guarda en PNG usando como bombre el nombre del objeto
+#'
+#' @param plot a ggplot2 object
+#' @param w width in inches
+#' @param h height in inches
+#' @param path where to save the plot
+#' @param dpi dots per inch
+#'
+#' @export
+saving_plot <- function(plot, w, h, path = "./", dpi = 350) {
+  checkmate::assert_class(plot, "ggplot")
+  name <- paste0(deparse(substitute(plot)), ".png")
+  ggplot2::ggsave(
+    file.path(path, name),
+    plot,
+    width = w,
+    height = h,
+    dpi = dpi
+  )
+}
