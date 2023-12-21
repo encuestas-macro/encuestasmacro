@@ -1,0 +1,23 @@
+utils::globalVariables(
+  c(
+    "ano",
+    "crecimiento_interanual",
+    "dia",
+    "fecha",
+    "inflacion_diciembre_obs",
+    "ipc_vi",
+    "ipc_vm",
+    "mes",
+    "partida",
+    "periodo",
+    "tc_diciembre_obs",
+    "tc_mes_obs",
+    "tpm",
+    "tpm_diciembre_obs",
+    "tpm_mes_obs",
+    "tpm_trimestre_obs",
+    "trimestre",
+    "venta",
+    "year"
+  )
+)
