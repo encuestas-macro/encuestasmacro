@@ -232,3 +232,39 @@ saving_plot <- function(plot, w, h, path = "./", dpi = 350) {
     dpi = dpi
   )
 }
+
+#' Rescale a vector given desired values
+#'
+#' @param x vector to rescale
+#' @param new_min new minimum value
+#' @param new_max new maximum value
+#'
+#' @return A numeric vector
+#' @export
+#'
+#' @examples
+#' rescale(1:10, 0, 1)
+rescale <- function(x, new_min = 0, new_max = 1) {
+  old_range <-  (max(x) - min(x))
+  new_range <-  (new_max - (new_min))
+  new_value <-  (((x - min(x)) * new_range) / old_range) + (new_min)
+  return(new_value)
+}
+
+
+#' Adjust ggplot2 margins
+#'
+#' @param t number with top margin
+#' @param r number with right margin
+#' @param b number with bottom margin
+#' @param l number with left margin
+#' @param unit string with the unit to use. "cm"  by default
+add_margins <- function(
+    t = 0.1,
+    r = 0.5,
+    b = 0.1,
+    l = 0.1,
+    unit = "cm"
+  ) {
+  ggplot2::theme(plot.margin = ggplot2::margin(t, r, b, l, unit))
+}
