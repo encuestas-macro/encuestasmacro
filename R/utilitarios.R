@@ -39,13 +39,13 @@ my_date_breaks <- function(min_date, max_date, step = 4) {
   secuencia <- seq(
     from = min_date,
     to = max_date,
-    by = 'month'
+    by = "month"
   )
 
   selected <- length(secuencia)
   n <- length(secuencia)
 
-  while(n > 1) {
+  while (n > 1) {
     selected <- c(selected, n - step)
     n <- n - step
   }
