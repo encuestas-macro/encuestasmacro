@@ -185,7 +185,7 @@ crear_mes <- function(mes, type = "text_to_number") {
 #' @export
 saving_plot <- function(plot, w, h, path = "./", dpi = 350) {
   checkmate::assert_class(plot, "ggplot")
-  name = paste0(deparse(substitute(plot)), ".png")
+  name <- paste0(deparse(substitute(plot)), ".png")
   ggplot2::ggsave(
     file.path(path, name),
     plot,
