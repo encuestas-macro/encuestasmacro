@@ -3,6 +3,7 @@
 export(crear_mes)
 export(create_month_dirs)
 export(date_label)
+export(get_data_eem)
 export(get_data_obervada_eem)
 export(get_pib_gasto)
 export(get_tc_spot)

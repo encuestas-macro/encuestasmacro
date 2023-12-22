@@ -1,0 +1,7 @@
+eem:
+  variables:
+    levels: ["inflacion", "tc", "tcd", "pib", "tpm"]
+    labels: ["Inflación", "Tipo de cambio", "Depreciación TC", "PIB", "TPM"]
+  horizontes:
+    levels: ["mes", "trimestre", "diciembre", "interanual", "diciembre2", "interanual2"]
+    labels: ["Fin de mes", "Fin de trimestre", "Fin de año", "12 meses", "Fin año siguiente", "24 meses"]

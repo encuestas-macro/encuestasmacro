@@ -23,5 +23,8 @@ Imports:
     readxl,
     janitor,
     tidyr,
-    purrr
+    purrr,
+    rlang,
+    yaml,
+    tibble
 Config/testthat/edition: 3
