@@ -13,6 +13,7 @@ eem_details <- read_details_file("eem")
 
 utils::globalVariables(
   c(
+    ".data",
     "ano",
     "crecimiento_interanual",
     "dia",
