@@ -268,3 +268,53 @@ add_margins <- function(
   ) {
   ggplot2::theme(plot.margin = ggplot2::margin(t, r, b, l, unit))
 }
+
+
+#' Macroeconomic Surveys colors
+#'
+#' @param which color or palette to pick from the list
+#'
+#' @return a vector with one or more colors
+#' @export
+colores_em <- function(which = NULL) {
+  colores <- tibble::lst(
+    blue  = "#0070C0",
+    gray  = "#7E8083",
+    green = "#007033",
+    red   = "#C00000",
+
+    paleta = c(
+      blue  = "#0070C0",
+      gray  = "#7E8083",
+      green = "#007033",
+      red   = "#C00000"
+    ),
+
+    paleta_ppt = c(
+      "#d00000",
+      "#e85d04",
+      "#e5383b",
+      "#f48c06"
+    ),
+
+    paleta_tableau = c(
+      "#4E79A7",
+      "#F28E2B",
+      "#E15759",
+      "#76B7B2",
+      "#59A14F",
+      "#EDC948",
+      "#B07AA1",
+      "#FF9DA7",
+      "#9C755F",
+      "#BAB0AC"
+    )
+  )
+
+  if (!is.null(which)) {
+    checkmate::assert_choice(which, names(colores))
+    return(colores[[which]])
+  }
+
+  colores
+}

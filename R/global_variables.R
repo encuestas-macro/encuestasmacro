@@ -1,7 +1,7 @@
 
 #' Read details form yaml file
 #'
-#' @param group
+#' @param group string wiht the component needed: "een", "eoe"
 #'
 #' @return a list with the existing values
 read_details_file <- function(group) {
