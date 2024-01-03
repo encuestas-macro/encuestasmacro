@@ -81,7 +81,7 @@ eem_data_diciembre <- function(
 ) {
   checkmate::check_choice(variable, c(eem_details$variables$levels))
   from_last_year <- data_eem |>
-    dplyr::filter(year == year_to_plot -1) |>
+    dplyr::filter(year == year_to_plot - 1) |>
     dplyr::select(
       periodo,
       matches("informante|colaborador"),

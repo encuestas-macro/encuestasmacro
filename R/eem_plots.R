@@ -1,8 +1,30 @@
+
+
+#' Create boxplot
+#'
+#' Designed to plot boxplot out of the wide EEM data. Just provide the data frame
+#' and the name of the variable to plot.
+#'
+#' @param data_eem eem data in wide format, or simmilar strutured data frame
+#' @param variable variable key: "inflacion", "tc", "tcd", "pib" or "tpm"
+#' @param ...
+#' @param min_date start date of the plot in yyyy-mm-dd format
+#' @param color color to use from the colores_em()
+#' @param font_size number with the funt size
+#' @param labsx labs for x axis
+#' @param labsy labs for y axis
+#'
+#' @return a ggplot2 object
+#' @export
+#'
+#' @examples
+#' eem_boxplot(example_eem_data(), "inflacion_interanual")
+#' eem_boxplot(example_eem_data(), "tcd_diciembre")
 eem_boxplot <- function(
     data_eem,
     variable,
     ...,
-    min_date = "2021-01-01",
+    min_date = "2022-01-01",
     color = colores_em("blue"),
     font_size = 10,
     labsx = NULL,
@@ -15,7 +37,7 @@ eem_boxplot <- function(
     ggplot2::ggplot(
       ggplot2::aes(
         x = periodo,
-        y = .data[[variable]],
+        y = dplyr::all_of(variable),
         group = periodo
       )
     ) +
