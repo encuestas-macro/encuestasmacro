@@ -84,7 +84,7 @@ eem_data_diciembre <- function(
     dplyr::filter(year == year_to_plot - 1) |>
     dplyr::select(
       periodo,
-      matches("informante|colaborador"),
+      dplyr::matches("informante|colaborador"),
       expectativa = .data[[paste0(variable, "_diciembre2")]]
     )
 
@@ -92,7 +92,7 @@ eem_data_diciembre <- function(
     dplyr::filter(year == year_to_plot) |>
     dplyr::select(
       periodo,
-      matches("informante|colaborador"),
+      dplyr::matches("informante|colaborador"),
       expectativa = .data[[paste0(variable, "_diciembre")]]
     ) |>
     dplyr::bind_rows(from_last_year)
