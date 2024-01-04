@@ -85,7 +85,7 @@ eem_data_diciembre <- function(
     dplyr::select(
       periodo,
       dplyr::matches("informante|colaborador"),
-      expectativa = .data[[paste0(variable, "_diciembre2")]]
+      expectativa = dplyr::all_of(paste0(variable, "_diciembre2"))
     )
 
   data_eem |>
@@ -93,7 +93,7 @@ eem_data_diciembre <- function(
     dplyr::select(
       periodo,
       dplyr::matches("informante|colaborador"),
-      expectativa = .data[[paste0(variable, "_diciembre")]]
+      expectativa = dplyr::all_of(paste0(variable, "_diciembre"))
     ) |>
     dplyr::bind_rows(from_last_year)
 }
@@ -111,6 +111,6 @@ eem_data_diciembre <- function(
 example_eem_data <- function(format = "wide") {
   get_data_eem(
     data_path = system.file("unnamed_eem.rds", package = "encuestasmacro"),
-    format = "wide"
+    format = format
   )
 }
