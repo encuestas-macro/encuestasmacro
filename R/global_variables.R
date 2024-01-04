@@ -39,6 +39,11 @@ utils::globalVariables(
     "variable",
     "variable_label",
     "venta",
-    "year"
+    "year",
+    "q1",
+    "q3",
+    "median",
+    "stats",
+    "quantile"
   )
 )

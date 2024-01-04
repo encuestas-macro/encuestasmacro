@@ -26,5 +26,6 @@ Imports:
     purrr,
     rlang,
     yaml,
-    tibble
+    tibble,
+    scales
 Config/testthat/edition: 3
