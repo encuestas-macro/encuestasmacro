@@ -73,7 +73,7 @@ get_data_eem <- function(format = c("wide", "long"), data_path = NULL) {
 #' @export
 #'
 #' @examples
-#' eem_data_diciembre(get_data_eem(), "inflacion", 2023)
+#' eem_data_diciembre(example_eem_data(), "inflacion", 2023)
 eem_data_diciembre <- function(
     data_eem,
     variable = "inflacion",

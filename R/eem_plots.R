@@ -6,19 +6,20 @@
 #'
 #' @param data_eem eem data in wide format, or simmilar strutured data frame
 #' @param variable variable key: "inflacion", "tc", "tcd", "pib" or "tpm"
-#' @param ...
+#' @param ... ggplot2 theme configuration
 #' @param min_date start date of the plot in yyyy-mm-dd format
 #' @param color color to use from the colores_em()
 #' @param font_size number with the funt size
 #' @param labsx labs for x axis
 #' @param labsy labs for y axis
+#' @param font_family font family name. Use extrafont::load_font() to load
 #'
 #' @return a ggplot2 object
 #' @export
 #'
 #' @examples
-#' eem_boxplot(example_eem_data(), "inflacion_interanual")
-#' eem_boxplot(example_eem_data(), "tcd_diciembre")
+#' eem_boxplot(example_eem_data(), "inflacion_interanual", font_family = "sans")
+#' eem_boxplot(example_eem_data(), "tcd_diciembre", font_family = "sans")
 eem_boxplot <- function(
     data_eem,
     variable,
@@ -27,7 +28,8 @@ eem_boxplot <- function(
     color = colores_em("blue"),
     font_size = 10,
     labsx = NULL,
-    labsy = NULL
+    labsy = NULL,
+    font_family = "Gotham Book"
   ) {
   data_exp <- data_eem |>
     dplyr::filter(periodo >= min_date)
@@ -66,7 +68,7 @@ eem_boxplot <- function(
     ggplot2::coord_cartesian(
       ylim = c(bp_limits$min, bp_limits$max)
     ) +
-    theme_em(...) +
+    theme_em(..., font_family = font_family) +
     ggplot2::labs(x = labsx, y = labsy) +
     ggplot2::scale_x_date(
       labels = date_label,
@@ -84,7 +86,7 @@ eem_boxplot <- function(
 #'
 #' @param eem_long eem data in long format. Get it using `get_eem_data("long")`
 #' @param plot_var variable to plot: "inflacion", "tc", "tcd", "pib" or "tpm"
-#' @param ...
+#' @param ... ggplot2 theme configuration
 #' @param horizon horizon to plot
 #' @param stat string indicating "promedio" or "mediana". Promedio by default
 #' @param start_year When should the plot start
@@ -96,6 +98,7 @@ eem_boxplot <- function(
 #' @param dot_size number indicating the size of the dots
 #' @param breaks integer with the number of breaks
 #' @param font_size number with the font size
+#' @param font_family font family name. Use extrafont::load_font() to load
 #'
 #' @return a ggplot2 object
 #' @export
@@ -113,7 +116,8 @@ eem_ribbon_plot <- function(
     color = NULL,
     dot_size = 2,
     breaks = 6,
-    font_size = 13
+    font_size = 13,
+    font_family = "Gotham Book"
   ) {
   checkmate::assert_choice(plot_var, eem_details$variables$levels)
   checkmate::assert_choice(horizon, eem_details$horizontes$labels)
@@ -179,6 +183,7 @@ eem_ribbon_plot <- function(
     ggplot2::scale_y_continuous(labels = function(x) scales::comma(x, 0.1)) +
     theme_em(
       text_size = font_size,
+      font_family = font_family,
       ...
       ) +
     ggplot2::labs(x = NULL, y = NULL)
