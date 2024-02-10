@@ -3,8 +3,6 @@ data_eem_wide <- get_data_eem(
   format = "wide"
 )
 
-
-
 test_that("eem_boxplot works", {
   plot1 <- eem_boxplot(data_eem_wide, "inflacion_mes")
   plot2 <- eem_data_diciembre(data_eem_wide) |>

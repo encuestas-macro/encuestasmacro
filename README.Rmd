@@ -1,0 +1,80 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+devtools::load_all()
+```
+
+# encuestasmacro
+
+<!-- badges: start -->
+[![CI](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/encuestas-macro/encuestasmacro/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+Tools for processing and analysis of the Macroeconomic Surveys of the Central Bank 
+of the Dominican Republic.
+
+## Installation
+
+You can install the development version of `encuestasmacro` with the following command:
+
+```{r, eval=FALSE}
+remotes::install_github("encuestas-macro/encuestasmacro")
+```
+
+## How to use
+
+In the package you'll find the data of the macroeconomic surveys, as well as functions
+to explore and visualized the results. Let's see how we can explore the Macroeconomic
+Expectations Survey with the `encuestasmacro` package.
+
+1. Get the data in wide or long format
+
+```{r}
+eem_wide <- example_eem_data(format = "wide")
+eem_long <- example_eem_data(format = "long")
+```
+
+```{r}
+head(eem_long)
+```
+
+2. Plot the results with the plotting functions
+
+**12 month inflation expectations**
+```{r, fig.width=5, fig.height=3.5, warning=FALSE}
+eem_wide |>
+  eem_boxplot(
+    variable = "inflacion_interanual",
+    font_family = "sans"
+  )
+```
+
+```{r}
+eem_long |>
+  eem_ribbon_plot(
+    "inflacion",
+    font_family = "sans",
+    color = colores_em("blue")
+  )
+```
+
+**Real GDP growth by the end of the year**
+```{r, fig.width=5, fig.height=3.5, warning=FALSE}
+eem_wide |>
+  eem_boxplot(
+    variable = "pib_diciembre",
+    font_family = "sans",
+    color = colores_em("green")
+  )
+```
