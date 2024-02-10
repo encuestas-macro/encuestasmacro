@@ -44,6 +44,17 @@ utils::globalVariables(
     "q3",
     "median",
     "stats",
-    "quantile"
+    "quantile",
+    "n",
+    "get_eem_historic",
+    "get_series_observadas",
+    "inflacion_mes",
+    "informante",
+    "tc_diciembre",
+    "tc_diciembre2",
+    "tc_interanual",
+    "tc_interanual2",
+    "tc_mes",
+    "tpm_interanual2"
   )
 )

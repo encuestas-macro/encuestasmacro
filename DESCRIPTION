@@ -27,5 +27,7 @@ Imports:
     rlang,
     yaml,
     tibble,
-    scales
+    scales,
+    usethis,
+    here
 Config/testthat/edition: 3

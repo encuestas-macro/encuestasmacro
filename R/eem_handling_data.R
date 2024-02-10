@@ -1,9 +1,15 @@
-# Función para importar la data de un mes en particular
+
+#' Read and prepare the monthly data
+#'
+#' @param data_year surevey year
+#' @param data_mes survey month as number
+#'
+#' @return a data frame
+#' @export
 eem_month_data <- function(data_year, data_mes) {
-  path <- here::here("eem", "data", "original_files", data_year)
+  path <- file.path("eem", "data", "original_files", data_year)
   file <- list.files(path, pattern = data_mes)
 
-  # Detalles sobre los colaboradores
   detalles_informantes <- readxl::read_excel(
     here::here("eem", "data", "general_files", "detalles_informantes.xlsx")
   ) |>
@@ -44,7 +50,7 @@ eem_month_data <- function(data_year, data_mes) {
     skip = 2,
     col_names = FALSE
   ) |>
-    setNames(headers) |>
+    stats::setNames(headers) |>
     dplyr::filter(
       informante != "Respuestas",
       !dplyr::if_all(
@@ -68,11 +74,6 @@ eem_month_data <- function(data_year, data_mes) {
       detalles_informantes,
       by = "informante"
     )
-
-  # La inflación de mayo 2020 se retrasó, salió en junio. Por esta razón
-  # el levantamiento de la EEM se realizó luego de que el TC y la TPM del
-  # mese eran públicas, quitándole sentido a levantar expectativas para esos
-  # horizontes. Por eso esta imputación
 
   if (data_year == 2020 & data_mes == "mayo") {
     observada_mayo <- observadas |>
@@ -106,7 +107,11 @@ eem_month_data <- function(data_year, data_mes) {
   data
 }
 
-# Actualiza el histórico en base a la data de un mes particular
+#' Update the historical data
+#'
+#' @param month_data monthly data
+#' @param new_data is this a new entry?
+#' @export
 update_eem_historic <- function(month_data, new_data = TRUE) {
   historico <- get_eem_historic()
   date_month_data <- max(month_data$periodo)
@@ -115,7 +120,7 @@ update_eem_historic <- function(month_data, new_data = TRUE) {
   if(new_data) {
     if(date_month_data < date_historic) {
       stop(
-        'La data del mes que pretende introducir ya está incluída,
+        'La data del mes que pretende introducir ya esta incluida,
         para sobreescribir usar `new_data = FALSE`'
       )
     }
@@ -124,7 +129,7 @@ update_eem_historic <- function(month_data, new_data = TRUE) {
         historico_updated,
         here::here('eem/data/general_files/rds/eem_historico.rds')
       )
-      print('Archivo histórico actualizado')
+      print('Archivo historico actualizado')
   } else if(!new_data) {
     historico_updated <- historico |>
       dplyr::filter(periodo != date_month_data) |>
@@ -134,30 +139,6 @@ update_eem_historic <- function(month_data, new_data = TRUE) {
       historico_updated,
       here::here('eem/data/general_files/rds/eem_historico.rds')
     )
-    usethis::ui_done("Archivo histórico actualizado")
+    usethis::ui_done("Archivo historico actualizado")
   }
-}
-
-# Genera el archivo de respuestas desagregadas del tipo de cambio
-respuestas_desagregadas_tc <- function() {
-
-  names <- c("year", "mes", "informante_id", "tc_mes",
-    "tc_diciembre", "tc_12_meses","tc_diciembre_next_year", 'tc_24_meses')
-
-  codes <-
-    get_eem_historic() |>
-    dplyr::count(informante) |>
-    tibble::rowid_to_column(var = 'informante_id') |>
-    dplyr::select(-n) %>%
-    as_tibble() %>%
-    ungroup()
-
-  get_eem_historic() |>
-    #ungroup() %>%
-    dplyr::select(year, mes, informante, contains('tc_')) |>
-    dplyr::left_join(codes, by = 'informante') |>
-    dplyr::arrange(year, mes, informante_id) |>
-    dplyr::select(year, mes, informante_id, contains('tc_')) |>
-    setNames(names) |>
-    tibble::as_tibble()
 }
