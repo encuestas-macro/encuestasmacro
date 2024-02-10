@@ -60,7 +60,7 @@ eem_wide |>
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+![](man/figures/README-inflacion_interanual_bp-1.png)<!-- -->
 
 ``` r
 eem_long |>
@@ -71,7 +71,7 @@ eem_long |>
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+![](man/figures/README-inflacion_interanual_rbb-1.png)<!-- -->
 
 **Real GDP growth by the end of the year**
 
@@ -84,4 +84,4 @@ eem_wide |>
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+![](man/figures/README-gdp_bp-1.png)<!-- -->

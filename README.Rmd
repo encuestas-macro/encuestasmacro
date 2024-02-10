@@ -8,8 +8,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  fig.path = "man/figures/README-"
 )
 
 devtools::load_all()
@@ -52,7 +51,7 @@ head(eem_long)
 2. Plot the results with the plotting functions
 
 **12 month inflation expectations**
-```{r, fig.width=5, fig.height=3.5, warning=FALSE}
+```{r inflacion_interanual_bp, fig.height=4, warning=FALSE}
 eem_wide |>
   eem_boxplot(
     variable = "inflacion_interanual",
@@ -60,7 +59,7 @@ eem_wide |>
   )
 ```
 
-```{r}
+```{r inflacion_interanual_rbb, fig.height=4, warning=FALSE}
 eem_long |>
   eem_ribbon_plot(
     "inflacion",
@@ -70,7 +69,7 @@ eem_long |>
 ```
 
 **Real GDP growth by the end of the year**
-```{r, fig.width=5, fig.height=3.5, warning=FALSE}
+```{r gdp_bp, fig.height=4, warning=FALSE}
 eem_wide |>
   eem_boxplot(
     variable = "pib_diciembre",
