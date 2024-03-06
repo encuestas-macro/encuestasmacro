@@ -9,7 +9,7 @@
 #' @param ... ggplot2 theme configuration
 #' @param min_date start date of the plot in yyyy-mm-dd format
 #' @param color color to use from the colores_em()
-#' @param font_size number with the funt size
+#' @param font_size number with the font size
 #' @param labsx labs for x axis
 #' @param labsy labs for y axis
 #' @param font_family font family name. Use extrafont::load_font() to load
@@ -97,7 +97,7 @@ eem_boxplot <- function(
 #' @param color color for the line. Literal color or hex code
 #' @param dot_size number indicating the size of the dots
 #' @param breaks integer with the number of breaks
-#' @param font_size number with the font size
+#' @param font_size number of the font size
 #' @param font_family font family name. Use extrafont::load_font() to load
 #'
 #' @return a ggplot2 object
@@ -187,4 +187,109 @@ eem_ribbon_plot <- function(
       ...
       ) +
     ggplot2::labs(x = NULL, y = NULL)
+}
+
+#' EEM density plot
+#'
+#' Designed to plot the density of the chosen variable from the EEM data.
+#'
+#' @param plotting_var The variable to plot. Ex: "inflacion", "tc", "tcd", "pib" or "tpm".
+#' @param scales If the scales of the graph should be fixed
+#' ("fixed", the default),"free",
+#' or free in one dimension ("free_x", "free_y").
+#' @param facets Boolean, true or false whether you want
+#' every horizon in different facets or all together.
+#' @param date_year Year to plot
+#' @param date_month Month to plot, both (year and month)
+#'should have a value or be NULL.
+#' @param font_size number indicating the size of the font of the graph.
+#' @param adjust A multiplicative bandwidth adjustment.
+#' This makes it possible to adjust the bandwidth while still using the a bandwidth estimator.
+#' For example, adjust = 1/2 means use half of the default bandwidth.
+#' @param horizontes horizons of the data to plot.
+#' @param breaks number of breaks in the x axis
+#' @param data_eem data to use to create the plot (eem long)
+#'
+#' @return a ggplot2 object
+#' @export
+#'
+#' @examples
+#'eem_density_plot('inflacion', facets = TRUE, font_size = 6)
+#'eem_density_plot('tpm', facets = FALSE, font_size = 3, adjust = 3)
+eem_density_plot <- function(
+    data_eem,
+    plotting_var = "inflacion",
+    scales = NULL,
+    facets = TRUE,
+    date_year = NULL,
+    date_month = NULL,
+    font_size = 13,
+    adjust = 2,
+    horizontes = NULL,
+    breaks = 5
+) {
+
+  checkmate::assert(
+    all(is.null(date_year), is.null(date_month)),
+    all(!is.null(date_year), !is.null(date_month)),
+    combine = "or"
+  )
+
+  eem <- data_eem
+
+  my_ifelse <- function(data, assertion, predicate_if, predicate_else) {
+    if (assertion) {
+      result <- dplyr::filter(data, {{ predicate_if }})
+    } else {
+      result <- dplyr::filter(data, {{predicate_else}})
+    }
+
+    result
+}
+
+  if (all(is.null(date_year), is.null(date_month))) {
+    data_to_plot <- eem |>
+      my_ifelse(
+        !is.null(horizontes),
+        horizonte %in% horizontes,
+        !horizonte %in% c("Fin de mes", "Fin de trimestre")
+      ) |>
+      dplyr::filter(
+        variable == plotting_var,
+        periodo == max(periodo),
+      )
+  } else {
+    data_to_plot <- eem |>
+      my_ifelse(
+        !is.null(horizontes),
+        horizonte %in% horizontes,
+        !horizonte %in% c("Fin de mes", "Fin de trimestre")
+      ) |>
+      dplyr::filter(
+        variable == plotting_var,
+        year == date_year,
+        mes == date_month
+      )
+}
+
+  if (facets) {
+    plot <- data_to_plot |>
+      ggplot2::ggplot(ggplot2::aes(x = value, y = ..density.., fill = horizonte)) +
+      ggplot2::geom_density(show.legend = FALSE, adjust = adjust, alpha = 0.7) +
+      ggplot2::facet_wrap(~horizonte, scales = scales) +
+      ggplot2::scale_fill_manual(values = unname(colores_em("paleta"))) +
+      theme_em(text_size = font_size) +
+      ggplot2::labs(x = NULL, y = "Densidad") +
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(breaks))
+
+    return(plot)
+}
+
+  data_to_plot |>
+    ggplot2::ggplot(ggplot2::aes(x = value, y = ..density.., color = horizonte)) +
+    ggplot2::geom_density(adjust = adjust, size = 1) +
+    ggplot2::scale_color_manual(values = unname(colores_em("paleta"))) +
+    theme_em() +
+    ggplot2::labs(x = NULL, y = "Densidad", color = NULL) +
+    ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(breaks))
 }
