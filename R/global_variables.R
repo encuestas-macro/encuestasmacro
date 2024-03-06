@@ -44,6 +44,7 @@ utils::globalVariables(
     "q3",
     "median",
     "stats",
-    "quantile"
+    "quantile",
+    "..density.."
   )
 )
